@@ -165,7 +165,7 @@ class PatientController {
   async showSembuh(req, res) {
     const patient = await Patient.findStatus("sembuh");
 
-    if (patient) {
+    if (patient.length > 0) {
       const data = {
         message: "Get recovered resource",
         data: patient,
@@ -183,7 +183,7 @@ class PatientController {
   async showMeninggal(req, res) {
     const patient = await Patient.findStatus("meninggal");
 
-    if (patient) {
+    if (patient.length > 0) {
       const data = {
         message: "Get dead resource",
         data: patient,
@@ -196,7 +196,6 @@ class PatientController {
       res.status(404).json(data);
     }
   }
-
 }
 
 // membuat object PatientController

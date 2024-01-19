@@ -94,9 +94,11 @@ class Patient {
     return new Promise((resolve, reject) => {
       const sql = "SELECT * FROM patients WHERE status = ?";
       db.query(sql, status, (err, results) => {
-        // destructing array
-        const [patient] = results;
-        resolve(patient);
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
       });
     });
   }
